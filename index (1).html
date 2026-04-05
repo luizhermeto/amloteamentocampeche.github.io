@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Associação de Moradores — Campeche 1 e 2</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ============================================================
+       COMO EDITAR ESTE ARQUIVO
+       ============================================================
+       1. Abra este arquivo no VS Code ou Bloco de Notas
+       2. Use Ctrl+F para encontrar o texto entre colchetes [ ]
+       3. Substitua pelo conteúdo real
+       4. Salve e faça o upload no GitHub
+
+       ONDE ESTÃO OS TEXTOS PARA PREENCHER:
+       - Dados da associação → procure por [NOME], [BAIRRO] etc.
+       - Financeiro          → procure por [VALOR], [MÊS]
+       - Ações               → procure por [Título da ação]
+       - Comunicados         → procure por [Título do comunicado]
+       - Contato             → procure por [WHATSAPP], [EMAIL]
+    ============================================================ */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --verde-escuro:    #2D5016;
+      --verde-meio:      #4A7C2F;
+      --verde-claro:     #7AAF55;
+      --areia:           #F5EDD8;
+      --terracota:       #C45E2A;
+      --terracota-hover: #A34820;
+      --texto-escuro:    #1C1C1A;
+      --texto-meio:      #555550;
+      --borda:           #D4C9AC;
+      --fundo-card:      #FFFDF6;
+      --fonte-titulo:    'DM Serif Display', Georgia, serif;
+      --fonte-corpo:     'DM Sans', system-ui, sans-serif;
+      --esp-sm:   8px;
+      --esp-md:   16px;
+      --esp-lg:   24px;
+      --esp-xl:   40px;
+      --esp-2xl:  64px;
+      --esp-3xl:  96px;
+      --max-largura: 1140px;
+      --raio-borda:  8px;
+      --raio-grande: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--fonte-corpo);
+      background-color: var(--areia);
+      color: var(--texto-escuro);
+      font-size: 17px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    img { display: block; max-width: 100%; }
+    a   { color: inherit; text-decoration: none; }
+
+    .container      { max-width: var(--max-largura); margin: 0 auto; padding: 0 var(--esp-lg); }
+    .secao          { padding: var(--esp-3xl) 0; }
+    .secao-pequena  { padding: var(--esp-2xl) 0; }
+
+    h1, h2, h3, h4 { font-family: var(--fonte-titulo); line-height: 1.15; color: var(--verde-escuro); }
+    h1 { font-size: clamp(2.4rem, 5vw, 3.8rem); }
+    h2 { font-size: clamp(1.9rem, 3.5vw, 2.8rem); }
+    h3 { font-size: clamp(1.3rem, 2vw, 1.6rem); }
+    h4 { font-size: 1.1rem; }
+
+    /* ─── Botões ─── */
+    .btn-primario {
+      display: inline-block;
+      background-color: var(--terracota);
+      color: #fff;
+      font-family: var(--fonte-corpo);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 14px 28px;
+      border-radius: var(--raio-borda);
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.15s;
+    }
+    .btn-primario:hover { background-color: var(--terracota-hover); transform: translateY(-1px); }
+
+    .btn-secundario {
+      display: inline-block;
+      background-color: transparent;
+      color: var(--verde-escuro);
+      font-family: var(--fonte-corpo);
+      font-size: 0.95rem;
+      font-weight: 600;
+      padding: 13px 27px;
+      border-radius: var(--raio-borda);
+      border: 2px solid var(--verde-escuro);
+      cursor: pointer;
+      transition: background-color 0.2s, color 0.2s;
+    }
+    .btn-secundario:hover { background-color: var(--verde-escuro); color: #fff; }
+
+    .btn-texto {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--verde-meio);
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: gap 0.2s;
+    }
+    .btn-texto:hover { gap: 10px; }
+    .btn-texto::after { content: '→'; }
+
+    /* ─── CABEÇALHO ─── */
+    .cabecalho {
+      position: sticky; top: 0; z-index: 100;
+      background-color: var(--verde-escuro);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-interior { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+    .logo { display: flex; align-items: center; gap: var(--esp-sm); }
+    .logo-icone {
+      width: 40px; height: 40px;
+      background-color: var(--verde-claro);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .logo-texto { font-family: var(--fonte-titulo); color: #fff; font-size: 1.25rem; line-height: 1.1; }
+    .logo-sub {
+      color: var(--verde-claro);
+      font-family: var(--fonte-corpo);
+      font-size: 0.7rem; font-weight: 500;
+      letter-spacing: 0.06em; text-transform: uppercase; display: block;
+    }
+    .nav-links { display: flex; align-items: center; list-style: none; gap: var(--esp-lg); }
+    .nav-links a {
+      color: rgba(255,255,255,0.8); font-size: 0.9rem; font-weight: 500;
+      transition: color 0.2s; padding: 4px 0; border-bottom: 2px solid transparent;
+    }
+    .nav-links a:hover { color: #fff; border-bottom-color: var(--verde-claro); }
+    .nav-cta {
+      background-color: var(--terracota); color: #fff !important;
+      padding: 8px 18px !important; border-radius: var(--raio-borda);
+      border-bottom: none !important; transition: background-color 0.2s !important;
+    }
+    .nav-cta:hover { background-color: var(--terracota-hover) !important; }
+
+    .menu-hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      background: none; border: none; cursor: pointer; padding: 4px;
+    }
+    .menu-hamburger span { display: block; width: 24px; height: 2px; background-color: #fff; border-radius: 2px; }
+
+    .nav-mobile {
+      display: none; background-color: var(--verde-escuro);
+      border-top: 1px solid rgba(255,255,255,0.1); padding: var(--esp-md) 0;
+    }
+    .nav-mobile.aberto { display: block; }
+    .nav-mobile a {
+      display: block; color: rgba(255,255,255,0.85); font-size: 1rem;
+      padding: 12px var(--esp-lg); font-weight: 500;
+      border-bottom: 1px solid rgba(255,255,255,0.06); transition: background 0.2s;
+    }
+    .nav-mobile a:hover { background-color: rgba(255,255,255,0.07); }
+    .nav-mobile .nav-cta-mobile {
+      margin: var(--esp-md) var(--esp-lg) var(--esp-sm);
+      display: block; text-align: center;
+      background-color: var(--terracota); color: #fff;
+      padding: 13px; border-radius: var(--raio-borda); font-weight: 600;
+    }
+
+    /* ─── HERO ─── */
+    .hero { background-color: var(--verde-escuro); overflow: hidden; position: relative; }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 70% 30%, rgba(122,175,85,0.15) 0%, transparent 60%),
+        radial-gradient(circle at 10% 80%, rgba(196,94,42,0.1) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .hero-interior {
+      position: relative;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: var(--esp-2xl); align-items: center;
+      padding: var(--esp-3xl) 0; min-height: 540px;
+    }
+    .hero-etiqueta {
+      display: inline-block;
+      background-color: rgba(122,175,85,0.2);
+      border: 1px solid rgba(122,175,85,0.4);
+      color: var(--verde-claro);
+      font-size: 0.78rem; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      padding: 5px 12px; border-radius: 100px; margin-bottom: var(--esp-md);
+    }
+    .hero h1 { color: #fff; margin-bottom: var(--esp-md); }
+    .hero h1 em { font-style: italic; color: var(--verde-claro); }
+    .hero-descricao {
+      color: rgba(255,255,255,0.75); font-size: 1.1rem;
+      line-height: 1.7; margin-bottom: var(--esp-xl); max-width: 480px;
+    }
+    .hero-botoes { display: flex; gap: var(--esp-md); flex-wrap: wrap; }
+    .hero-img-bloco { display: flex; justify-content: center; }
+
+    .hero-metricas {
+      background-color: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--raio-grande);
+      padding: var(--esp-xl); width: 100%; max-width: 380px;
+    }
+    .hero-metricas-titulo {
+      color: rgba(255,255,255,0.6); font-size: 0.8rem;
+      font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+      margin-bottom: var(--esp-lg);
+      border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: var(--esp-md);
+    }
+    .metrica-item {
+      display: flex; justify-content: space-between; align-items: baseline;
+      padding: 10px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .metrica-item:last-child { border-bottom: none; }
+    .metrica-label { color: rgba(255,255,255,0.65); font-size: 0.88rem; }
+    .metrica-valor { color: #fff; font-family: var(--fonte-titulo); font-size: 1.25rem; }
+    .metrica-valor.positivo { color: var(--verde-claro); }
+    .metrica-valor.destaque { color: #F5C842; }
+    .hero-rodape-nota { color: rgba(255,255,255,0.45); font-size: 0.75rem; margin-top: var(--esp-md); text-align: center; }
+
+    /* ─── FAIXA DE AVISO ─── */
+    .faixa-aviso { background-color: var(--terracota); padding: 14px 0; }
+    .aviso-interior { display: flex; align-items: center; gap: var(--esp-md); flex-wrap: wrap; }
+    .aviso-icone {
+      background-color: rgba(255,255,255,0.2); border-radius: 50%;
+      width: 32px; height: 32px;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.9rem;
+    }
+    .aviso-texto { color: #fff; font-size: 0.92rem; font-weight: 500; flex: 1; }
+    .aviso-link { color: rgba(255,255,255,0.9); font-size: 0.85rem; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.5); flex-shrink: 0; }
+
+    /* ─── FINANCEIRO ─── */
+    .numeros { background-color: var(--fundo-card); }
+    .secao-topo {
+      display: flex; align-items: flex-end; justify-content: space-between;
+      gap: var(--esp-md); margin-bottom: var(--esp-xl); flex-wrap: wrap;
+    }
+    .secao-etiqueta {
+      display: inline-block; color: var(--verde-meio);
+      font-size: 0.78rem; font-weight: 700;
+      letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: var(--esp-sm);
+    }
+    .secao-descricao { color: var(--texto-meio); font-size: 1rem; max-width: 520px; }
+
+    .grade-numeros { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--esp-md); margin-bottom: var(--esp-xl); }
+
+    .card-numero {
+      background-color: var(--areia); border: 1px solid var(--borda);
+      border-radius: var(--raio-grande); padding: var(--esp-lg);
+      position: relative; overflow: hidden;
+    }
+    .card-numero::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0;
+      height: 3px; border-radius: var(--raio-grande) var(--raio-grande) 0 0;
+    }
+    .card-numero.verde::before     { background-color: var(--verde-claro); }
+    .card-numero.terracota::before { background-color: var(--terracota); }
+    .card-numero.azul::before      { background-color: #5B8FB9; }
+    .card-numero.ouro::before      { background-color: #C9A94E; }
+
+    .numero-label { font-size: 0.82rem; font-weight: 600; color: var(--texto-meio); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: var(--esp-sm); }
+    .numero-valor { font-family: var(--fonte-titulo); font-size: 2rem; color: var(--verde-escuro); line-height: 1; margin-bottom: 6px; }
+    .numero-detalhe { font-size: 0.82rem; color: var(--texto-meio); }
+
+    .barra-progresso-bloco {
+      background-color: var(--areia); border: 1px solid var(--borda);
+      border-radius: var(--raio-grande); padding: var(--esp-lg) var(--esp-xl);
+    }
+    .barra-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--esp-sm); flex-wrap: wrap; gap: 8px; }
+    .barra-topo h4 { color: var(--verde-escuro); font-family: var(--fonte-corpo); font-weight: 600; }
+    .barra-topo span { font-size: 0.85rem; color: var(--texto-meio); }
+    .barra-fundo { background-color: var(--borda); border-radius: 100px; height: 8px; overflow: hidden; margin-bottom: 8px; }
+    .barra-preenchimento { height: 100%; border-radius: 100px; background-color: var(--verde-claro); transition: width 1s ease; }
+    .barra-nota { font-size: 0.8rem; color: var(--texto-meio); }
+
+    /* ─── AÇÕES ─── */
+    .acoes { background-color: var(--areia); }
+    .grade-acoes { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--esp-md); }
+    .card-acao {
+      background-color: var(--fundo-card); border: 1px solid var(--borda);
+      border-radius: var(--raio-grande); padding: var(--esp-lg);
+      display: flex; flex-direction: column; gap: var(--esp-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card-acao:hover { box-shadow: 0 4px 20px rgba(45,80,22,0.1); transform: translateY(-2px); }
+    .acao-topo { display: flex; align-items: center; justify-content: space-between; }
+    .acao-icone { width: 44px; height: 44px; border-radius: var(--raio-borda); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .icone-verde   { background-color: rgba(122,175,85,0.15); }
+    .icone-laranja { background-color: rgba(196,94,42,0.12); }
+    .icone-azul    { background-color: rgba(91,143,185,0.15); }
+    .acao-status { font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 100px; letter-spacing: 0.05em; text-transform: uppercase; }
+    .status-andamento { background-color: rgba(201,169,78,0.15); color: #8B6914; }
+    .status-novo      { background-color: rgba(122,175,85,0.15); color: #3A6B1A; }
+    .status-concluido { background-color: rgba(91,143,185,0.15); color: #2A5C8B; }
+    .card-acao h3 { font-size: 1rem; color: var(--verde-escuro); font-family: var(--fonte-corpo); font-weight: 600; }
+    .card-acao p  { font-size: 0.88rem; color: var(--texto-meio); line-height: 1.55; flex: 1; }
+    .acao-rodape { border-top: 1px solid var(--borda); padding-top: var(--esp-sm); display: flex; justify-content: space-between; align-items: center; }
+    .acao-meta { font-size: 0.78rem; color: var(--texto-meio); }
+
+    /* ─── COMUNICADOS ─── */
+    .comunicados { background-color: var(--fundo-card); }
+    .grade-comunicados { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); }
+    .card-comunicado {
+      background-color: var(--areia); border: 1px solid var(--borda);
+      border-radius: var(--raio-grande); padding: var(--esp-lg);
+      display: flex; gap: var(--esp-md); transition: box-shadow 0.2s;
+    }
+    .card-comunicado:hover { box-shadow: 0 3px 16px rgba(45,80,22,0.08); }
+    .comunicado-data {
+      flex-shrink: 0; width: 54px; text-align: center;
+      background-color: var(--verde-escuro); color: #fff;
+      border-radius: var(--raio-borda); padding: 8px 6px; height: fit-content;
+    }
+    .data-dia { font-family: var(--fonte-titulo); font-size: 1.5rem; line-height: 1; display: block; }
+    .data-mes { font-size: 0.65rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.75; }
+    .comunicado-corpo { flex: 1; }
+    .comunicado-tipo { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--terracota); margin-bottom: 4px; }
+    .comunicado-corpo h4 { font-family: var(--fonte-corpo); font-weight: 600; font-size: 0.95rem; color: var(--verde-escuro); margin-bottom: 6px; }
+    .comunicado-corpo p  { font-size: 0.85rem; color: var(--texto-meio); line-height: 1.5; }
+
+    /* ─── ASSOCIE-SE ─── */
+    .associe-se { background-color: var(--verde-escuro); position: relative; overflow: hidden; }
+    .associe-se::before {
+      content: ''; position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle at 85% 20%, rgba(122,175,85,0.12) 0%, transparent 55%),
+        radial-gradient(circle at 5% 90%, rgba(196,94,42,0.08) 0%, transparent 40%);
+      pointer-events: none;
+    }
+    .associe-interior { position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-3xl); align-items: center; }
+    .associe-lado-texto h2 { color: #fff; margin-bottom: var(--esp-md); }
+    .associe-descricao { color: rgba(255,255,255,0.7); font-size: 1.05rem; line-height: 1.7; margin-bottom: var(--esp-xl); }
+    .lista-beneficios { list-style: none; display: flex; flex-direction: column; gap: var(--esp-sm); margin-bottom: var(--esp-xl); }
+    .lista-beneficios li { display: flex; align-items: center; gap: var(--esp-sm); color: rgba(255,255,255,0.8); font-size: 0.95rem; }
+    .beneficio-check {
+      width: 22px; height: 22px; background-color: var(--verde-claro);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; font-size: 0.7rem; color: var(--verde-escuro); font-weight: 700;
+    }
+    .card-associe { background-color: var(--fundo-card); border-radius: var(--raio-grande); padding: var(--esp-xl); }
+    .card-associe h3 { font-size: 1.2rem; margin-bottom: var(--esp-md); color: var(--verde-escuro); }
+    .input-grupo { display: flex; flex-direction: column; gap: var(--esp-sm); margin-bottom: var(--esp-md); }
+    .input-label { font-size: 0.85rem; font-weight: 600; color: var(--texto-escuro); }
+    .input-campo {
+      width: 100%; padding: 12px 14px;
+      border: 1.5px solid var(--borda); border-radius: var(--raio-borda);
+      font-family: var(--fonte-corpo); font-size: 0.95rem;
+      background-color: var(--areia); color: var(--texto-escuro);
+      transition: border-color 0.2s; outline: none;
+    }
+    .input-campo:focus { border-color: var(--verde-meio); }
+    .grade-dois { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-md); }
+    .nota-form { font-size: 0.78rem; color: var(--texto-meio); margin-top: var(--esp-sm); text-align: center; }
+
+    /* ─── DOCUMENTOS ─── */
+    .documentos { background-color: var(--areia); }
+    .grade-docs { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--esp-md); }
+    .card-doc {
+      background-color: var(--fundo-card); border: 1px solid var(--borda);
+      border-radius: var(--raio-grande); padding: var(--esp-lg);
+      display: flex; flex-direction: column; align-items: flex-start; gap: var(--esp-sm);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card-doc:hover { box-shadow: 0 4px 16px rgba(45,80,22,0.1); transform: translateY(-2px); }
+    .doc-icone { font-size: 1.6rem; margin-bottom: 2px; }
+    .card-doc h4 { font-family: var(--fonte-corpo); font-weight: 600; font-size: 0.9rem; color: var(--verde-escuro); }
+    .card-doc p  { font-size: 0.8rem; color: var(--texto-meio); line-height: 1.4; flex: 1; }
+    .doc-link { font-size: 0.8rem; font-weight: 600; color: var(--verde-meio); display: flex; align-items: center; gap: 4px; transition: gap 0.2s; }
+    .doc-link:hover { gap: 8px; }
+    .doc-link::after { content: '↓'; }
+
+    /* ─── CONTATO ─── */
+    .contato { background-color: var(--fundo-card); }
+    .grade-contato { display: grid; grid-template-columns: 1fr 1fr; gap: var(--esp-2xl); align-items: start; }
+    .canal-item { display: flex; align-items: center; gap: var(--esp-md); padding: var(--esp-md) 0; border-bottom: 1px solid var(--borda); }
+    .canal-item:last-child { border-bottom: none; }
+    .canal-icone { width: 46px; height: 46px; background-color: rgba(74,124,47,0.1); border-radius: var(--raio-borda); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+    .canal-info span { display: block; font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--texto-meio); margin-bottom: 2px; }
+    .canal-info strong { font-size: 0.95rem; color: var(--verde-escuro); font-weight: 600; }
+    .form-contato { display: flex; flex-direction: column; gap: var(--esp-md); }
+    textarea.input-campo { resize: vertical; min-height: 110px; }
+
+    /* ─── RODAPÉ ─── */
+    .rodape { background-color: var(--verde-escuro); padding: var(--esp-2xl) 0 var(--esp-xl); }
+    .rodape-grade { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: var(--esp-xl); padding-bottom: var(--esp-xl); border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: var(--esp-lg); }
+    .rodape-logo-texto { font-family: var(--fonte-titulo); color: #fff; font-size: 1.2rem; margin-bottom: var(--esp-sm); display: block; }
+    .rodape-descricao { color: rgba(255,255,255,0.55); font-size: 0.85rem; line-height: 1.6; max-width: 260px; }
+    .rodape-col-titulo { color: rgba(255,255,255,0.9); font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: var(--esp-md); }
+    .rodape-links { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .rodape-links a { color: rgba(255,255,255,0.55); font-size: 0.88rem; transition: color 0.2s; }
+    .rodape-links a:hover { color: var(--verde-claro); }
+    .rodape-base { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--esp-sm); }
+    .rodape-direitos { color: rgba(255,255,255,0.35); font-size: 0.8rem; }
+    .rodape-info     { color: rgba(255,255,255,0.3);  font-size: 0.78rem; }
+
+    /* ─── RESPONSIVIDADE ─── */
+    @media (max-width: 960px) {
+      .grade-numeros { grid-template-columns: repeat(2, 1fr); }
+      .grade-acoes   { grid-template-columns: 1fr 1fr; }
+      .grade-docs    { grid-template-columns: repeat(2, 1fr); }
+      .rodape-grade  { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      :root { --esp-3xl: 64px; --esp-2xl: 48px; }
+      .nav-links { display: none; }
+      .menu-hamburger { display: flex; }
+      .hero-interior { grid-template-columns: 1fr; min-height: auto; padding-bottom: var(--esp-2xl); }
+      .hero-img-bloco { justify-content: flex-start; }
+      .hero-metricas { max-width: 100%; }
+      .associe-interior { grid-template-columns: 1fr; }
+      .grade-comunicados { grid-template-columns: 1fr; }
+      .grade-contato { grid-template-columns: 1fr; }
+      .rodape-grade { grid-template-columns: 1fr; gap: var(--esp-lg); }
+      .grade-docs { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 520px) {
+      .grade-numeros { grid-template-columns: 1fr 1fr; }
+      .grade-acoes   { grid-template-columns: 1fr; }
+      .grade-docs    { grid-template-columns: 1fr; }
+      .grade-dois    { grid-template-columns: 1fr; }
+      .hero-botoes   { flex-direction: column; }
+      .aviso-interior { flex-direction: column; align-items: flex-start; }
+    }
+
+    @keyframes sobe { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+    .animar   { animation: sobe 0.6s ease forwards; opacity: 0; }
+    .atraso-1 { animation-delay: 0.1s; }
+    .atraso-2 { animation-delay: 0.25s; }
+    .atraso-3 { animation-delay: 0.4s; }
+    .atraso-4 { animation-delay: 0.55s; }
+  </style>
+</head>
+<body>
+
+  <!-- ══════════════════════════════════
+       CABEÇALHO
+       EDITAR: logo-texto e logo-sub
+  ══════════════════════════════════ -->
+  <header class="cabecalho">
+    <div class="container">
+      <nav class="nav-interior">
+        <a href="#" class="logo">
+          <div class="logo-icone">🌳</div>
+          <div>
+            <span class="logo-texto">Assoc. Moradores</span><!-- EDITAR: sigla ou nome curto -->
+            <span class="logo-sub">Campeche 1 e 2 · Florianópolis</span><!-- EDITAR: bairro e cidade -->
+          </div>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#financeiro">Financeiro</a></li>
+          <li><a href="#acoes">Ações</a></li>
+          <li><a href="#comunicados">Comunicados</a></li>
+          <li><a href="#documentos">Documentos</a></li>
+          <li><a href="#associar" class="nav-cta">Associe-se</a></li>
+        </ul>
+        <button class="menu-hamburger" onclick="toggleMenu()" aria-label="Abrir menu">
+          <span></span><span></span><span></span>
+        </button>
+      </nav>
+    </div>
+    <div class="nav-mobile" id="nav-mobile">
+      <a href="#financeiro"  onclick="fecharMenu()">Financeiro</a>
+      <a href="#acoes"       onclick="fecharMenu()">Ações e projetos</a>
+      <a href="#comunicados" onclick="fecharMenu()">Comunicados</a>
+      <a href="#documentos"  onclick="fecharMenu()">Documentos</a>
+      <a href="#contato"     onclick="fecharMenu()">Contato</a>
+      <a href="#associar" class="nav-cta-mobile" onclick="fecharMenu()">Associe-se agora</a>
+    </div>
+  </header>
+
+
+  <!-- ══════════════════════════════════
+       HERO
+       EDITAR: etiqueta, título, descrição
+               e todos os valores do painel
+  ══════════════════════════════════ -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-interior">
+
+        <div class="hero-texto">
+          <span class="hero-etiqueta animar atraso-1">Campeche 1 e 2 — Florianópolis</span><!-- EDITAR -->
+          <h1 class="animar atraso-2">
+            Seu bairro,<br>
+            <em>nossa associação</em><!-- EDITAR: chamada principal -->
+          </h1>
+          <p class="hero-descricao animar atraso-3">
+            Aqui você acompanha tudo que a associação está fazendo pelo Campeche: onde o dinheiro está sendo aplicado, quais ações estão em andamento e quando são as próximas assembleias.<!-- EDITAR: descrição -->
+          </p>
+          <div class="hero-botoes animar atraso-4">
+            <a href="#financeiro" class="btn-primario">Ver balanço do mês</a>
+            <a href="#acoes" class="btn-secundario" style="color:#fff;border-color:rgba(255,255,255,0.4);">Ações em andamento</a>
+          </div>
+        </div>
+
+        <div class="hero-img-bloco animar atraso-4">
+          <div class="hero-metricas">
+            <p class="hero-metricas-titulo">📊 Resumo financeiro — [MÊS] [ANO]</p><!-- EDITAR: mês e ano -->
+
+            <div class="metrica-item">
+              <span class="metrica-label">Receita de cotas</span>
+              <span class="metrica-valor positivo">R$ —</span><!-- EDITAR: valor arrecadado -->
+            </div>
+            <div class="metrica-item">
+              <span class="metrica-label">Despesas do mês</span>
+              <span class="metrica-valor">R$ —</span><!-- EDITAR: total de despesas -->
+            </div>
+            <div class="metrica-item">
+              <span class="metrica-label">Saldo disponível</span>
+              <span class="metrica-valor positivo">R$ —</span><!-- EDITAR: saldo em conta -->
+            </div>
+            <div class="metrica-item">
+              <span class="metrica-label">Associados ativos</span>
+              <span class="metrica-valor">—</span><!-- EDITAR: número de associados -->
+            </div>
+            <div class="metrica-item">
+              <span class="metrica-label">Projetos em andamento</span>
+              <span class="metrica-valor destaque">— ativos</span><!-- EDITAR: quantidade de projetos -->
+            </div>
+
+            <p class="hero-rodape-nota">
+              Atualizado em [DD/MM/AAAA]<!-- EDITAR: data de atualização -->
+              · <a href="#financeiro" style="color:var(--verde-claro);border-bottom:1px solid;">Ver balancete →</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       FAIXA DE AVISO
+       EDITAR: texto do aviso e local.
+       DICA: delete este bloco inteiro
+       quando não houver aviso ativo.
+  ══════════════════════════════════ -->
+  <div class="faixa-aviso">
+    <div class="container">
+      <div class="aviso-interior">
+        <div class="aviso-icone">📢</div>
+        <p class="aviso-texto">
+          <!-- EDITAR: título do aviso, data, horário e local -->
+          <strong>[TÍTULO DO AVISO] — [DIA] de [MÊS], [DIA DA SEMANA], [HORÁRIO]</strong> · [Local do evento]
+        </p>
+        <a href="#comunicados" class="aviso-link">Ver convocação →</a>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ══════════════════════════════════
+       FINANCEIRO
+       EDITAR: valores dos 4 cards e
+               dados da barra de progresso
+  ══════════════════════════════════ -->
+  <section class="numeros secao" id="financeiro">
+    <div class="container">
+
+      <div class="secao-topo">
+        <div>
+          <span class="secao-etiqueta">Transparência financeira</span>
+          <h2>O que fizemos<br>com o seu dinheiro</h2>
+        </div>
+        <a href="#documentos" class="btn-texto">Baixar balancete completo</a>
+      </div>
+
+      <div class="grade-numeros">
+
+        <div class="card-numero verde">
+          <p class="numero-label">Arrecadado em [MÊS]</p><!-- EDITAR: mês -->
+          <p class="numero-valor">R$ —</p><!-- EDITAR: valor -->
+          <p class="numero-detalhe">— cotas pagas de — previstas</p><!-- EDITAR: números -->
+        </div>
+
+        <div class="card-numero terracota">
+          <p class="numero-label">Total de despesas</p>
+          <p class="numero-valor">R$ —</p><!-- EDITAR: valor -->
+          <p class="numero-detalhe">Manutenção, serviços e administrativo</p><!-- EDITAR: categorias -->
+        </div>
+
+        <div class="card-numero azul">
+          <p class="numero-label">Saldo em conta</p>
+          <p class="numero-valor">R$ —</p><!-- EDITAR: valor -->
+          <p class="numero-detalhe">Banco: [Nome do banco]</p><!-- EDITAR: banco -->
+        </div>
+
+        <div class="card-numero ouro">
+          <p class="numero-label">Reserva acumulada</p>
+          <p class="numero-valor">R$ —</p><!-- EDITAR: valor -->
+          <p class="numero-detalhe">Fundo para obras e emergências</p>
+        </div>
+
+      </div>
+
+      <div class="barra-progresso-bloco" style="margin-top:var(--esp-md)">
+        <div class="barra-topo">
+          <h4>Meta de associados em dia — [MÊS] [ANO]</h4><!-- EDITAR: mês e ano -->
+          <!-- EDITAR: números reais. Fórmula da %: (pagantes ÷ total) × 100 -->
+          <span>— de — moradores (—%)</span>
+        </div>
+        <div class="barra-fundo">
+          <!-- EDITAR: porcentagem no style, ex: width: 75% -->
+          <div class="barra-preenchimento" style="width: 0%"></div>
+        </div>
+        <!-- EDITAR: valor da cota -->
+        <p class="barra-nota">Cada cota mensal é de R$ [VALOR]. Se você ainda não pagou, entre em contato pelo WhatsApp.</p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       AÇÕES EM ANDAMENTO
+       EDITAR: preencha os 6 cards abaixo.
+       Ícones sugeridos: 🌳 🛤️ 🔦 💧 🧹 🚦 🏗️ ♻️
+       Status disponíveis:
+         status-andamento → amarelo "Em andamento"
+         status-novo      → verde   "Novo"
+         status-concluido → azul    "Concluído"
+  ══════════════════════════════════ -->
+  <section class="acoes secao" id="acoes">
+    <div class="container">
+
+      <div class="secao-topo">
+        <div>
+          <span class="secao-etiqueta">Ações e projetos</span>
+          <h2>O que está<br>acontecendo agora</h2>
+        </div>
+        <a href="#" class="btn-texto">Ver todos os projetos</a>
+      </div>
+
+      <div class="grade-acoes">
+
+        <!-- AÇÃO 1 — EDITAR tudo entre os comentários EDITAR -->
+        <div class="card-acao">
+          <div class="acao-topo">
+            <div class="acao-icone icone-verde">🌳</div><!-- EDITAR: ícone e cor (icone-verde / icone-laranja / icone-azul) -->
+            <span class="acao-status status-andamento">Em andamento</span><!-- EDITAR: classe de status -->
+          </div>
+          <h3>[Título da ação 1]</h3><!-- EDITAR -->
+          <p>[Descreva o que está sendo feito, quem está envolvido e qual o objetivo.]</p><!-- EDITAR -->
+          <div class="acao-rodape">
+            <span class="acao-meta">📅 Início: [mês/ano]</span><!-- EDITAR -->
+            <a href="#" class="btn-texto" style="font-size:0.8rem">Ver detalhes</a>
+          </div>
+        </div>
+
+        <!-- AÇÃO 2 -->
+        <div class="card-acao">
+          <div class="acao-topo">
+            <div class="acao-icone icone-laranja">💧</div>
+            <span class="acao-status status-andamento">Em andamento</span>
+          </div>
+          <h3>[Título da ação 2]</h3>
+          <p>[Descreva o que está sendo feito, quem está envolvido e qual o objetivo.]</p>
+          <div class="acao-rodape">
+            <span class="acao-meta">📋 Protocolo: [número]</span><!-- EDITAR -->
+            <a href="#" class="btn-texto" style="font-size:0.8rem">Ver ofício</a>
+          </div>
+        </div>
+
+        <!-- AÇÃO 3 -->
+        <div class="card-acao">
+          <div class="acao-topo">
+            <div class="acao-icone icone-azul">🔦</div>
+            <span class="acao-status status-novo">Novo</span>
+          </div>
+          <h3>[Título da ação 3]</h3>
+          <p>[Descreva o que está sendo feito, quem está envolvido e qual o objetivo.]</p>
+          <div class="acao-rodape">
+            <span class="acao-meta">📅 Iniciado: [mês/ano]</span>
+            <a href="#" class="btn-texto" style="font-size:0.8rem">Ver status</a>
+          </div>
+        </div>
+
+        <!-- AÇÃO 4 -->
+        <div class="card-acao">
+          <div class="acao-topo">
+            <div class="acao-icone icone-verde">🛤️</div>
+            <span class="acao-status status-andamento">Em andamento</span>
+          </div>
+          <h3>[Título da ação 4]</h3>
+          <p>[Descreva o que está sendo feito, quem está envolvido e qual o objetivo.]</p>
+          <div class="acao-rodape">
+            <span class="acao-meta">💰 Valor: R$ [valor]</span><!-- EDITAR -->
+            <a href="#" class="btn-texto" style="font-size:0.8rem">Ver contrato</a>
+          </div>
+        </div>
+
+        <!-- AÇÃO 5 -->
+        <div class="card-acao">
+          <div class="acao-topo">
+            <div class="acao-icone icone-azul">🧹</div>
+            <span class="acao-status status-concluido">Concluído</span>
+          </div>
+          <h3>[Título da ação 5]</h3>
+          <p>[Descreva o que foi feito e qual foi o resultado desta ação.]</p>
+          <div class="acao-rodape">
+            <span class="acao-meta">✅ Concluído em [mês/ano]</span><!-- EDITAR -->
+            <a href="#" class="btn-texto" style="font-size:0.8rem">Ver fotos</a>
+          </div>
+        </div>
+
+        <!-- AÇÃO 6 -->
+        <div class="card-acao">
+          <div class="acao-topo">
+            <div class="acao-icone icone-laranja">🚦</div>
+            <span class="acao-status status-novo">Novo</span>
+          </div>
+          <h3>[Título da ação 6]</h3>
+          <p>[Descreva o que está sendo feito, quem está envolvido e qual o objetivo.]</p>
+          <div class="acao-rodape">
+            <span class="acao-meta">📅 Reunião: [mês/ano]</span><!-- EDITAR -->
+            <a href="#" class="btn-texto" style="font-size:0.8rem">Acompanhar</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       COMUNICADOS
+       EDITAR: dia, mês, tipo e texto
+       dos 4 cards abaixo.
+       Tipos sugeridos:
+         🗳️ Assembleia  💰 Financeiro
+         🔔 Aviso       🧹 Evento
+  ══════════════════════════════════ -->
+  <section class="comunicados secao" id="comunicados">
+    <div class="container">
+
+      <div class="secao-topo">
+        <div>
+          <span class="secao-etiqueta">Comunicados</span>
+          <h2>Fique por dentro<br>do que está acontecendo</h2>
+        </div>
+        <a href="#" class="btn-texto">Ver todos os avisos</a>
+      </div>
+
+      <div class="grade-comunicados">
+
+        <!-- COMUNICADO 1 -->
+        <div class="card-comunicado">
+          <div class="comunicado-data">
+            <span class="data-dia">—</span><!-- EDITAR: número do dia, ex: 15 -->
+            <span class="data-mes">MÊS</span><!-- EDITAR: abreviação, ex: ABR -->
+          </div>
+          <div class="comunicado-corpo">
+            <p class="comunicado-tipo">🗳️ Assembleia</p><!-- EDITAR: tipo -->
+            <h4>[Título do comunicado 1]</h4><!-- EDITAR -->
+            <p>[Descreva em 1 ou 2 frases o conteúdo deste aviso.]</p><!-- EDITAR -->
+          </div>
+        </div>
+
+        <!-- COMUNICADO 2 -->
+        <div class="card-comunicado">
+          <div class="comunicado-data">
+            <span class="data-dia">—</span>
+            <span class="data-mes">MÊS</span>
+          </div>
+          <div class="comunicado-corpo">
+            <p class="comunicado-tipo">💰 Financeiro</p>
+            <h4>[Título do comunicado 2]</h4>
+            <p>[Descreva em 1 ou 2 frases o conteúdo deste aviso.]</p>
+          </div>
+        </div>
+
+        <!-- COMUNICADO 3 -->
+        <div class="card-comunicado">
+          <div class="comunicado-data">
+            <span class="data-dia">—</span>
+            <span class="data-mes">MÊS</span>
+          </div>
+          <div class="comunicado-corpo">
+            <p class="comunicado-tipo">🔔 Aviso</p>
+            <h4>[Título do comunicado 3]</h4>
+            <p>[Descreva em 1 ou 2 frases o conteúdo deste aviso.]</p>
+          </div>
+        </div>
+
+        <!-- COMUNICADO 4 -->
+        <div class="card-comunicado">
+          <div class="comunicado-data">
+            <span class="data-dia">—</span>
+            <span class="data-mes">MÊS</span>
+          </div>
+          <div class="comunicado-corpo">
+            <p class="comunicado-tipo">🧹 Evento</p>
+            <h4>[Título do comunicado 4]</h4>
+            <p>[Descreva em 1 ou 2 frases o conteúdo deste aviso.]</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       ASSOCIE-SE
+       EDITAR: benefícios, valor da cota
+               e campos do formulário
+  ══════════════════════════════════ -->
+  <section class="associe-se secao" id="associar">
+    <div class="container">
+      <div class="associe-interior">
+
+        <div class="associe-lado-texto">
+          <span class="secao-etiqueta" style="color:var(--verde-claro)">Faça parte</span>
+          <h2>Juntos, o bairro melhora para todos</h2>
+          <p class="associe-descricao">
+            Associar-se é a forma mais direta de ter voz ativa nas decisões do Campeche e garantir que os recursos sejam aplicados onde realmente importa.<!-- EDITAR: descrição -->
+          </p>
+
+          <!-- EDITAR: lista de benefícios (adicione ou remova itens) -->
+          <ul class="lista-beneficios">
+            <li><span class="beneficio-check">✓</span> Direito a voto em todas as assembleias</li>
+            <li><span class="beneficio-check">✓</span> Acesso ao balancete financeiro mensal</li>
+            <li><span class="beneficio-check">✓</span> Participação nas decisões de obras e projetos</li>
+            <li><span class="beneficio-check">✓</span> Canal direto com a diretoria via ouvidoria</li>
+            <li><span class="beneficio-check">✓</span> [Outro benefício]<!-- EDITAR ou delete este item --></li>
+          </ul>
+
+          <p style="color:rgba(255,255,255,0.6);font-size:0.9rem;">
+            Cota mensal: <strong style="color:#fff;">R$ [VALOR]</strong> — pago via [forma de pagamento].<!-- EDITAR -->
+          </p>
+        </div>
+
+        <div class="card-associe">
+          <h3>Quero me associar</h3>
+          <p style="font-size:0.88rem;color:var(--texto-meio);margin-bottom:var(--esp-md);">
+            Preencha os dados abaixo e a diretoria entrará em contato em até 2 dias úteis.
+          </p>
+          <div class="input-grupo">
+            <label class="input-label">Nome completo</label>
+            <input type="text" class="input-campo" placeholder="Ex.: Maria da Silva" />
+          </div>
+          <div class="grade-dois">
+            <div class="input-grupo">
+              <label class="input-label">WhatsApp</label>
+              <input type="tel" class="input-campo" placeholder="(48) 9 0000-0000" /><!-- EDITAR: DDD -->
+            </div>
+            <div class="input-grupo">
+              <label class="input-label">Loteamento</label>
+              <select class="input-campo">
+                <option value="">Selecione</option>
+                <option>Campeche 1</option><!-- EDITAR se necessário -->
+                <option>Campeche 2</option><!-- EDITAR se necessário -->
+              </select>
+            </div>
+          </div>
+          <div class="input-grupo">
+            <label class="input-label">Endereço (rua e número)</label>
+            <input type="text" class="input-campo" placeholder="Ex.: Rua dos Açores, 210" />
+          </div>
+          <button class="btn-primario" style="width:100%;margin-top:4px;">Enviar solicitação</button>
+          <p class="nota-form">🔒 Seus dados são usados apenas para contato da associação</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       DOCUMENTOS
+       EDITAR: nomes e links dos 4 arquivos.
+       DICA: quando tiver o PDF, suba o arquivo
+       no GitHub e substitua href="#" pelo
+       caminho, ex: href="documentos/estatuto.pdf"
+  ══════════════════════════════════ -->
+  <section class="documentos secao-pequena" id="documentos">
+    <div class="container">
+
+      <div class="secao-topo">
+        <div>
+          <span class="secao-etiqueta">Documentos</span>
+          <h2>Downloads rápidos</h2>
+        </div>
+        <a href="#" class="btn-texto">Ver todos os arquivos</a>
+      </div>
+
+      <div class="grade-docs">
+
+        <div class="card-doc">
+          <div class="doc-icone">📄</div>
+          <h4>Balancete [MÊS] [ANO]</h4><!-- EDITAR: mês e ano -->
+          <p>Relatório financeiro completo com receitas, despesas e saldo por categoria.</p>
+          <a href="#" class="doc-link">Baixar PDF</a><!-- EDITAR: link quando tiver o arquivo -->
+        </div>
+
+        <div class="card-doc">
+          <div class="doc-icone">📋</div>
+          <h4>Ata da Assembleia — [MÊS/ANO]</h4><!-- EDITAR -->
+          <p>Registro oficial da reunião com deliberações e votações realizadas.</p>
+          <a href="#" class="doc-link">Baixar PDF</a>
+        </div>
+
+        <div class="card-doc">
+          <div class="doc-icone">📜</div>
+          <h4>Estatuto Social</h4>
+          <p>Documento fundador da associação com objetivos, estrutura e regras de funcionamento.</p>
+          <a href="#" class="doc-link">Baixar PDF</a>
+        </div>
+
+        <div class="card-doc">
+          <div class="doc-icone">📢</div>
+          <h4>Convocação — [MÊS/ANO]</h4><!-- EDITAR -->
+          <p>Edital com pauta, local, data e instruções para participação e votação.</p>
+          <a href="#" class="doc-link">Baixar PDF</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       CONTATO
+       EDITAR: WhatsApp, e-mail, endereço,
+               horários e link do grupo
+  ══════════════════════════════════ -->
+  <section class="contato secao" id="contato">
+    <div class="container">
+
+      <div style="margin-bottom:var(--esp-xl)">
+        <span class="secao-etiqueta">Contato</span>
+        <h2>Fale com a diretoria</h2>
+        <p class="secao-descricao">Dúvidas, sugestões ou reclamações? Estamos aqui para ouvir. Todo contato é respondido em até 3 dias úteis.</p>
+      </div>
+
+      <div class="grade-contato">
+
+        <div>
+          <div class="canal-item">
+            <div class="canal-icone">💬</div>
+            <div class="canal-info">
+              <span>WhatsApp da diretoria</span>
+              <strong>[WHATSAPP] — [Horário de atendimento]</strong><!-- EDITAR -->
+            </div>
+          </div>
+          <div class="canal-item">
+            <div class="canal-icone">📧</div>
+            <div class="canal-info">
+              <span>E-mail</span>
+              <strong>[EMAIL DA ASSOCIAÇÃO]</strong><!-- EDITAR -->
+            </div>
+          </div>
+          <div class="canal-item">
+            <div class="canal-icone">📍</div>
+            <div class="canal-info">
+              <span>Sede / endereço de referência</span>
+              <strong>[ENDEREÇO]</strong><!-- EDITAR: ou "A definir" se ainda não tiver sede -->
+            </div>
+          </div>
+          <div class="canal-item">
+            <div class="canal-icone">📅</div>
+            <div class="canal-info">
+              <span>Atendimento</span>
+              <strong>[Dias e horários]</strong><!-- EDITAR -->
+            </div>
+          </div>
+          <div class="canal-item">
+            <div class="canal-icone">💙</div>
+            <div class="canal-info">
+              <span>Grupo de WhatsApp</span>
+              <!-- EDITAR: substituir # pelo link de convite do grupo -->
+              <strong><a href="#" style="color:var(--verde-meio)">Entrar no grupo de moradores →</a></strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-contato">
+          <div class="input-grupo">
+            <label class="input-label">Seu nome</label>
+            <input type="text" class="input-campo" placeholder="Como podemos te chamar?" />
+          </div>
+          <div class="input-grupo">
+            <label class="input-label">E-mail ou WhatsApp para retorno</label>
+            <input type="text" class="input-campo" placeholder="Seu contato para resposta" />
+          </div>
+          <div class="input-grupo">
+            <label class="input-label">Assunto</label>
+            <select class="input-campo">
+              <option value="">Selecione um assunto</option>
+              <option>Dúvida sobre mensalidade</option>
+              <option>Sugestão de projeto</option>
+              <option>Reclamação / ouvidoria</option>
+              <option>Solicitação de documento</option>
+              <option>Outro assunto</option>
+            </select>
+          </div>
+          <div class="input-grupo">
+            <label class="input-label">Mensagem</label>
+            <textarea class="input-campo" placeholder="Escreva sua mensagem aqui..."></textarea>
+          </div>
+          <button class="btn-primario">Enviar mensagem</button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+
+  <!-- ══════════════════════════════════
+       RODAPÉ
+       EDITAR: nome, descrição e ano
+  ══════════════════════════════════ -->
+  <footer class="rodape">
+    <div class="container">
+      <div class="rodape-grade">
+
+        <div>
+          <span class="rodape-logo-texto">🌳 Assoc. Moradores Campeche 1 e 2</span><!-- EDITAR: nome -->
+          <p class="rodape-descricao">
+            Associação de Moradores dos Loteamentos Campeche 1 e 2, Florianópolis. Trabalhando pelo bairro com transparência e participação de todos.<!-- EDITAR: descrição -->
+          </p>
+        </div>
+
+        <div>
+          <p class="rodape-col-titulo">Informações</p>
+          <ul class="rodape-links">
+            <li><a href="#financeiro">Financeiro</a></li>
+            <li><a href="#acoes">Ações e projetos</a></li>
+            <li><a href="#comunicados">Comunicados</a></li>
+            <li><a href="#documentos">Documentos</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="rodape-col-titulo">Associação</p>
+          <ul class="rodape-links">
+            <li><a href="#">Quem somos</a></li>
+            <li><a href="#">Diretoria atual</a></li>
+            <li><a href="#associar">Como se associar</a></li>
+            <li><a href="#contato">Ouvidoria</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <p class="rodape-col-titulo">Contato rápido</p>
+          <ul class="rodape-links">
+            <li><a href="#">💬 WhatsApp</a></li>
+            <li><a href="#">📧 E-mail</a></li>
+            <li><a href="#">💙 Grupo de moradores</a></li>
+            <li><a href="#">📍 Como chegar</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="rodape-base">
+        <p class="rodape-direitos">© [ANO] Associação de Moradores dos Loteamentos Campeche 1 e 2. Florianópolis, SC.</p><!-- EDITAR: ano -->
+        <p class="rodape-info">Associação em processo de regularização · Atualizado em [MÊS/ANO]</p><!-- EDITAR: quando tiver CNPJ, adicionar aqui -->
+      </div>
+    </div>
+  </footer>
+
+
+  <script>
+    function toggleMenu() {
+      document.getElementById('nav-mobile').classList.toggle('aberto');
+    }
+    function fecharMenu() {
+      document.getElementById('nav-mobile').classList.remove('aberto');
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+      link.addEventListener('click', e => {
+        const alvo = document.querySelector(link.getAttribute('href'));
+        if (alvo) { e.preventDefault(); alvo.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+      });
+    });
+
+    const observador = new IntersectionObserver((entradas) => {
+      entradas.forEach(entrada => {
+        if (entrada.isIntersecting) {
+          entrada.target.style.opacity = '1';
+          entrada.target.style.transform = 'translateY(0)';
+          observador.unobserve(entrada.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.card-acao, .card-comunicado, .card-doc, .card-numero').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(16px)';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+      observador.observe(card);
+    });
+  </script>
+
+</body>
+</html>
